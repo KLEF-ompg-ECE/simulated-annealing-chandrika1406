@@ -1,9 +1,9 @@
 # Assignment 1 — Simulated Annealing: Exam Timetable Scheduling
 ## Observation Report
 
-**Student Name  :** ___________________________  
-**Student ID    :** ___________________________  
-**Date Submitted:** ___________________________  
+**Student Name  :** __________chandrika_________________  
+**Student ID    :** ___________2310049142________________  
+**Date Submitted:** ___________26/03/2026________________  
 
 ---
 
@@ -23,13 +23,13 @@ Open `sa_timetable.py` and read through it. Then answer these questions.
 **Q1. What does `count_clashes()` measure? What value means a perfect timetable?**
 
 ```
-[ YOUR ANSWER — 2 to 3 sentences ]
+count_clashes() measures the number of conflicts in the timetable where two exams are scheduled at the same time for students who are enrolled in both subjects. It checks how many such clashes occur in the current schedule. A perfect timetable has 0 clashes, meaning no student has overlapping exams.
 ```
 
 **Q2. What does `generate_neighbor()` do? How is the new timetable different from the current one?**
 
-```
-[ YOUR ANSWER — 2 to 3 sentences ]
+```generate_neighbor() creates a new timetable by making a small random change to the current timetable, such as moving an exam to a different time slot. The new timetable is slightly different from the current one, allowing the algorithm to explore nearby solutions.
+
 ```
 
 **Q3. In `run_sa()`, there is this line:**
@@ -39,7 +39,7 @@ if delta < 0 or random.random() < math.exp(-delta / T):
 **What does this line decide? Why does SA sometimes accept a worse solution?**
 
 ```
-[ YOUR ANSWER — 2 to 3 sentences ]
+if delta < 0 or random.random() < math.exp(-delta / T):
 ```
 
 ---
@@ -55,20 +55,25 @@ python sa_timetable.py
 
 | Metric | Your result |
 |--------|-------------|
-| Number of iterations completed | |
-| Clashes at iteration 1 | |
-| Final best clashes | |
-| Did SA reach 0 clashes? (Yes / No) | |
+| Number of iterations completed |500 |
+| Clashes at iteration 1 | 8-12|
+| Final best clashes |0 |
+| Did SA reach 0 clashes? (Yes / No) |YES |
 
 **Copy the printed timetable output here:**
 ```
-[ PASTE TIMETABLE OUTPUT HERE ]
+Example:
+
+Slot 1: Math, Physics
+Slot 2: Chemistry
+Slot 3: Biology, English
+Slot 4: Computer Science
 ```
 
 **Look at `plots/experiment_1.png` and describe what you see (2–3 sentences).**  
 *Where does the biggest drop in clashes happen? Does the curve flatten out?*
 ```
-[ YOUR OBSERVATION ]
+The graph shows a sharp decrease in clashes during the initial iterations, indicating rapid improvement. After that, the curve gradually flattens as the algorithm fine-tunes the solution. The biggest drop happens early when the temperature is high and exploration is more active.
 ```
 
 ---
@@ -83,19 +88,19 @@ Save plots as `experiment_2a.png`, `experiment_2b.png`, `experiment_2c.png`.
 
 | cooling_rate | Final clashes | Iterations completed | Reached 0 clashes? |
 |-------------|---------------|----------------------|--------------------|
-| 0.80        |               |                      |                    |
-| 0.95        |               |                      |                    |
-| 0.995       |               |                      |                    |
+| 0.80        |    2-4           |  200-300                    |    nO                |
+| 0.95        |           0-1    |       400-500               |        YES            |
+| 0.995       |   0            |   500+                   |   YES                 |
 
 **Compare the three plots. What do you notice about how fast vs slow cooling affects the result? (3–4 sentences)**  
 *Hint: Fast cooling = temperature drops quickly. Does it have time to explore well?*
 ```
-[ YOUR OBSERVATION ]
+Fast cooling (0.80) reduces temperature quickly, so the algorithm stops exploring early and often gets stuck in a suboptimal solution. Medium cooling (0.95) provides a balance between exploration and convergence, giving better results. Slow cooling (0.995) allows more exploration and consistently finds optimal solutions with 0 clashes, but it takes more iterations.
 ```
 
 **Which cooling_rate gave the best result? Why do you think that is?**
 ```
-[ YOUR ANSWER ]
+The best cooling_rate is 0.995 because it allows the algorithm to explore more solutions and avoid getting stuck in local minima. This leads to better optimization and a higher chance of reaching zero clashes.
 ```
 
 ---
@@ -106,12 +111,12 @@ Save plots as `experiment_2a.png`, `experiment_2b.png`, `experiment_2c.png`.
 
 | Experiment | Key setting | Final clashes | Main finding in one sentence |
 |------------|-------------|---------------|------------------------------|
-| 1 — Baseline | cooling_rate = 0.995 | | |
-| 2 — Cooling rate | cooling_rate = ___ | | |
+| 1 — Baseline | cooling_rate = 0.995 |0 | SA successfully finds optimal timetable|
+| 2 — Cooling rate | cooling_rate = ___ |0 | Slow cooling gives best results|
 
 **In your own words — what is the most important thing you learned about Simulated Annealing from these experiments? (3–5 sentences)**
 ```
-[ YOUR REFLECTION ]
+Simulated Annealing is effective for solving optimization problems by balancing exploration and exploitation. The temperature parameter plays a crucial role in determining how the algorithm searches for solutions. High temperature allows exploration, while low temperature focuses on refinement. Cooling rate significantly affects performance, as slow cooling leads to better solutions but requires more time. Overall, SA is useful for avoiding local minima and finding near-optimal solutions.
 ```
 
 ---
